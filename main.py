@@ -16,22 +16,26 @@ class Person:
         if not self.calculation_history:
             print(f"{self.name} has no calculations yet.")
         else:
+            print(f"\n*** Calculation History for {self.name} ***")
             for calculation in self.calculation_history:
-                print(f"'Calculation History for ' {self.name} 'Is' \n\n {calculation}")
+                print(calculation)
+            print("***************************************\n")
 
     def view_game_history(self):
         if not self.game_history:
             print(f"{self.name} has no game history yet.")
         else:
+            print(f"\n*** Game History for {self.name} ***")
             for result in self.game_history:
                 print(result)
+            print("***********************************\n")
 
 
 def perform_calculation(person):
     try:
         num1 = float(input(f"{person.name}, enter first number: "))
         operation = input("Enter operation (+, -, *, /): ")
-        num2 = float(input("Enter second number: "))
+        num2 = float(input("Enter second number: ")
 
         if operation == '+':
             result = num1 + num2
@@ -92,7 +96,9 @@ def main():
 
     while True:
         player2_name = input("Enter name of Player 2: ")
-        if player2_name == player1_name:
+        if player2_name.strip() == "":
+            print("Player 2's name cannot be empty. Please enter a valid name.")
+        elif player2_name == player1_name:
             print("Player 2's name must be different from Player 1's name. Please enter a different name.")
         else:
             break
@@ -111,7 +117,7 @@ def main():
         choice = input("Choose an option (1-5): ")
 
         if choice == '1':
-            user = input("Who will use the calculator? " + player1.name + " or " + player2.name + ": ")
+            user = input(f"Who will use the calculator? {player1.name} or {player2.name}: ")
             if user == player1.name:
                 perform_calculation(player1)
             elif user == player2.name:
@@ -120,7 +126,7 @@ def main():
                 print("Invalid user.")
 
         elif choice == '2':
-            user = input("Whose calculation history do you want to see? " + player1.name + " or " + player2.name + ": ")
+            user = input(f"Whose calculation history do you want to see? {player1.name} or {player2.name}: ")
             if user == player1.name:
                 player1.view_calculation_history()
             elif user == player2.name:
@@ -129,7 +135,7 @@ def main():
                 print("Invalid user.")
 
         elif choice == '3':
-            user = input("Who is going to play? " + player1.name + " or " + player2.name + " or computer: ")
+            user = input(f"Who is going to play? {player1.name}, {player2.name}, or computer: ")
             if user == player1.name:
                 play_rock_paper_scissors(player1, player2)
             elif user == player2.name:
@@ -140,7 +146,7 @@ def main():
                 print("Invalid user.")
 
         elif choice == '4':
-            user = input("Whose game history do you want to see? " + player1.name + " or " + player2.name + ": ")
+            user = input(f"Whose game history do you want to see? {player1.name} or {player2.name}: ")
             if user == player1.name:
                 player1.view_game_history()
             elif user == player2.name:
