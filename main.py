@@ -17,7 +17,7 @@ class Person:
             print(f"{self.name} has no calculations yet.")
         else:
             for calculation in self.calculation_history:
-                print(calculation)
+                print(f"'Calculation History for ' {self.name} 'Is' \n\n {calculation}")
 
     def view_game_history(self):
         if not self.game_history:
@@ -50,7 +50,9 @@ def perform_calculation(person):
 
         calculation = f"{num1} {operation} {num2} = {result}"
         person.add_calculation(calculation)
-        print("Result:", result)
+        print("\n*** Calculation Result ***")
+        print(f"Result: {result}")
+        print("**************************\n")
     except ValueError:
         print("Invalid input, please enter numeric values.")
 
@@ -77,7 +79,9 @@ def play_rock_paper_scissors(player1, player2):
     else:
         result = f"{player2.name} wins!"
 
+    print("\n*** Game Result ***")
     print(result)
+    print("*******************\n")
     player1.add_game_result(result)
     if isinstance(player2, Person):
         player2.add_game_result(result)
@@ -85,7 +89,13 @@ def play_rock_paper_scissors(player1, player2):
 def main():
     print("Welcome to the Rock, Paper, Scissors and Calculator Program!")
     player1_name = input("Enter name of Player 1: ")
-    player2_name = input("Enter name of Player 2: ")
+
+    while True:
+        player2_name = input("Enter name of Player 2: ")
+        if player2_name == player1_name:
+            print("Player 2's name must be different from Player 1's name. Please enter a different name.")
+        else:
+            break
 
     player1 = Person(player1_name)
     player2 = Person(player2_name)
